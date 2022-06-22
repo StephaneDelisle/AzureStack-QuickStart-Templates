@@ -1,0 +1,23 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: ubuntu-latest
+
+- task: AzureResourceManagerTemplateDeployment@3
+  inputs:
+    deploymentScope: 'Resource Group'
+    azureResourceManagerConnection: 'iAAH-ti-test'
+    subscriptionId: '42047e9b-f305-4da9-913d-4c7d5cac45d7'
+    action: 'Create Or Update Resource Group'
+    resourceGroupName: 'iagiaahlab01-rg-tier0'
+    location: 'Canada Central'
+    templateLocation: 'URL of the file'
+    csmFileLink: 'https://dev.azure.com/StephaneDelisle2/myDaytoday/_git/Myfirst?path=/template.json'
+    csmParametersFileLink: 'https://dev.azure.com/StephaneDelisle2/myDaytoday/_git/Myfirst?path=/template.json'
+    deploymentMode: 'Incremental'
